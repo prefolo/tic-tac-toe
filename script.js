@@ -1,32 +1,31 @@
 const Gameboard = (function () {
 	let marks = new Array(9);
 
-	marks[0] = 'x';
-	marks[5] = 'o';
-	marks[3] = 'x';
-	marks[8] = 'o';
-
 	function display() {
 		const cells = document.querySelectorAll('.cell');
 
 		for (let i = 0; i < marks.length; i++) {
 			const mark = marks[i];
 
-			if (mark == 'x') cells[i].textContent = 'x';
-			else if (mark == 'o') cells[i].textContent = 'o';
+			if (mark == 'x' || mark == 'o') cells[i].textContent = mark;
 			else cells[i].textContent = '';
 		}
 	}
 
 	function setMarkIntoCell(mark, cell) {
+		if (marks[cell.dataset.index] != undefined) return 0;
+
 		if (mark == 'x' || mark == 'o') marks[cell.dataset.index] = mark;
+		display();
+		return 1;
 	}
 
 	function clear() {
 		marks = new Array(9);
+		display();
 	}
 
-	return { display, setMarkIntoCell, clear };
+	return { setMarkIntoCell, clear };
 })();
 
 const Player = (name, mark) => {
@@ -43,7 +42,6 @@ const Game = (function () {
 
 	function start() {
 		Gameboard.clear();
-		Gameboard.display();
 
 		player1 = Player(1, 'o');
 		player2 = Player(1, 'x');
@@ -51,18 +49,22 @@ const Game = (function () {
 	}
 
 	function markCell(cell) {
-		Gameboard.setMarkIntoCell(currentPlayer.getMark(), cell);
-		Gameboard.display();
-		currentPlayer = currentPlayer == player1 ? player2 : player1;
+		const isMarked = Gameboard.setMarkIntoCell(
+			currentPlayer.getMark(),
+			cell
+		);
+
+		if (isMarked)
+			currentPlayer = currentPlayer == player1 ? player2 : player1;
 	}
 
 	return { start, markCell };
 })();
-
-Gameboard.display();
 
 document.querySelectorAll('.cell').forEach((cell) =>
 	cell.addEventListener('click', function () {
 		Game.markCell(this);
 	})
 );
+
+Game.start();

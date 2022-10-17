@@ -6,6 +6,12 @@
 
 :root{
     --cell-border-color:#aaa;
+    --body-bg-color:#546;
+    --body-color: #fff;
+    --gameboard-bg-color:#fff;
+    --gameboard-color: #000;
+    --gameboard-shadow-color:#333;
+    --footer-color:#56b0ff;
 }
 
 body{
@@ -15,6 +21,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: var(--body-bg-color);
+    color:var(--body-color);
 }
 
 #header{
@@ -31,18 +39,22 @@ body{
     justify-content: center;
     height: 50px;
     font-size: 16px;
+    color:var(--footer-color);
 }
 
 /* gameboard */
 
 #gameboard{
     display: grid;
-    grid-template-columns: 50px 50px 50px;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 70px 70px 70px;
+    grid-template-rows: 70px 70px 70px;
     justify-content: center;
-    border: 1px solid #aaa;
     width: fit-content;
     margin: 0 auto;
+    background-color: var(--gameboard-bg-color);
+    color: var(--gameboard-color);
+    box-shadow: 0px 11px 10px var(--gameboard-shadow-color);
+    border-radius: 10px;
 }
 
 .cell{

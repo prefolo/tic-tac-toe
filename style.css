@@ -12,6 +12,9 @@
     --gameboard-color: #000;
     --gameboard-shadow-color:#333;
     --footer-color:#56b0ff;
+    --button-bg-color:rgb(242, 255, 0);
+    --button-pressed-bg-color:rgb(255, 196, 0);
+    --button-color:#000;
 }
 
 body{
@@ -23,6 +26,10 @@ body{
     justify-content: space-between;
     background-color: var(--body-bg-color);
     color:var(--body-color);
+}
+
+button{
+    cursor: pointer;
 }
 
 #header{
@@ -40,6 +47,25 @@ body{
     height: 50px;
     font-size: 16px;
     color:var(--footer-color);
+}
+
+#button-section{
+    display: flex;
+    justify-content: center;
+    padding-top:60px;
+}
+
+#restart-btn {
+    border:0;
+    padding:6px 10px;
+    font-size:14px;
+    background-color: var(--button-bg-color);
+    border-radius: 4px;
+    color:var(--button-color);
+}
+
+#restart-btn:active {
+    background-color: var(--button-pressed-bg-color);
 }
 
 /* gameboard */

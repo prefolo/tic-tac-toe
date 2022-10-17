@@ -129,4 +129,6 @@ document.querySelectorAll('.cell').forEach((cell) =>
 	})
 );
 
+document.querySelector('#restart-btn').addEventListener('click', Game.start);
+
 Game.start();

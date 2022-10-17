@@ -86,6 +86,7 @@ const Game = (function () {
 
 	function start() {
 		Gameboard.clear();
+		displayResult('');
 
 		gameIsOver = false;
 		player1 = Player(1, 'o');
@@ -106,18 +107,22 @@ const Game = (function () {
 
 		switch (Gameboard.getWinnerMark()) {
 			case 'o':
-				console.log('Player1 (mark o) won!');
+				displayResult('Player1 (mark o) won!');
 				gameIsOver = true;
 				break;
 			case 'x':
-				console.log('Player2 (mark x) won!');
+				displayResult('Player2 (mark x) won!');
 				gameIsOver = true;
 				break;
 			case 'tie':
-				console.log('Tie!');
+				displayResult('Tie!');
 				gameIsOver = true;
 				break;
 		}
+	}
+
+	function displayResult(msg) {
+		document.querySelector('#result-container').textContent = msg;
 	}
 
 	return { start, markCell, getGameIsOver };

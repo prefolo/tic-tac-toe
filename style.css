@@ -49,6 +49,8 @@ button{
     color:var(--footer-color);
 }
 
+/* button section */
+
 #button-section{
     display: flex;
     justify-content: center;
@@ -96,4 +98,13 @@ button{
 }
 .c1, .c2 {
     border-right: 1px solid var(--cell-border-color);
+}
+
+/* result container */
+
+#result-container{
+    height:136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

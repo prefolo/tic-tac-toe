@@ -15,6 +15,7 @@
     --button-bg-color:rgb(242, 255, 0);
     --button-pressed-bg-color:rgb(255, 196, 0);
     --button-color:#000;
+    --winner-cell-bg-color:rgb(255, 174, 174);
 }
 
 body{
@@ -98,6 +99,26 @@ button{
 }
 .c1, .c2 {
     border-right: 1px solid var(--cell-border-color);
+}
+
+.r1.c1{
+    border-top-left-radius: 10px;
+}
+
+.r1.c3{
+    border-top-right-radius: 10px;
+}
+
+.r3.c1 {
+    border-bottom-left-radius: 10px;
+}
+
+.r3.c3 {
+    border-bottom-right-radius: 10px;
+}
+
+.winner-cell{
+    background-color: var(--winner-cell-bg-color);
 }
 
 /* result container */

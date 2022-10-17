@@ -22,27 +22,31 @@ const Gameboard = (function () {
 	}
 
 	function clear() {
+		const cells = document.querySelectorAll('.cell');
+		cells.forEach((cell) => cell.classList.remove('winner-cell'));
+
 		marks = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 		display();
 	}
 
 	function getWinnerMark() {
 		const parts = [
-			marks.slice(0, 3), // row1
-			marks.slice(3, 6), // row2
-			marks.slice(6), // row3
-			[marks[0], marks[3], marks[6]], // col1
-			[marks[1], marks[4], marks[7]], // col2
-			[marks[2], marks[5], marks[8]], // col3
-			[marks[0], marks[4], marks[8]], // diagonal1
-			[marks[2], marks[4], marks[6]], // diagonal2
+			{ values: marks.slice(0, 3), indexes: [0, 1, 2] }, // row1
+			{ values: marks.slice(3, 6), indexes: [3, 4, 5] }, // row2
+			{ values: marks.slice(6), indexes: [6, 7, 8] }, // row3
+			{ values: [marks[0], marks[3], marks[6]], indexes: [0, 3, 6] }, // col1
+			{ values: [marks[1], marks[4], marks[7]], indexes: [1, 4, 7] }, // col2
+			{ values: [marks[2], marks[5], marks[8]], indexes: [2, 5, 8] }, // col3
+			{ values: [marks[0], marks[4], marks[8]], indexes: [0, 4, 8] }, // diagonal1
+			{ values: [marks[2], marks[4], marks[6]], indexes: [2, 4, 6] }, // diagonal2
 		];
 
 		let winnerMark;
 
 		for (const part of parts) {
-			if (allAreEqual(part)) {
-				winnerMark = part[0];
+			if (allAreEqual(part.values)) {
+				winnerMark = part.values[0];
+				highlightCells(part.indexes);
 				break;
 			}
 		}
@@ -64,6 +68,14 @@ const Gameboard = (function () {
 		});
 
 		return result;
+	}
+
+	function highlightCells(indexes) {
+		const cells = document.querySelectorAll('.cell');
+
+		for (const i of indexes) {
+			cells[i].classList.add('winner-cell');
+		}
 	}
 
 	return { setMarkIntoCell, clear, getWinnerMark };
@@ -90,7 +102,7 @@ const Game = (function () {
 
 		gameIsOver = false;
 		player1 = Player(1, 'o');
-		player2 = Player(1, 'x');
+		player2 = Player(2, 'x');
 		currentPlayer = player1;
 	}
 

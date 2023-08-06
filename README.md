@@ -1,3 +1,7 @@
-# Tic-Tac-Toe
+# Tic Tac Toe
 
-Tic Tac Toe game in javascript.
+A Tic Tac Toe game in javascript.
+
+## How to run the code
+
+Open the index.html file.
